@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            background: hsl(206, 21%, 94%);
+        }
+
+        #centerDiv {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+        }
+
+        #centerDiv img {
+            border-radius: 20px;
+            transition: all ease 0.6s;
+        }
+
+        #centerDiv img:hover {
+            transform: scale(1.1);
+        }
+
+        .center-div {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+     
+    </style>
+</head>
+
+<body>
+    <div class="main-div">
+        <div class="center-div" id="centerDiv">
+
+        </div>
+    </div>
+
+
+    <script>
+        const center = document.getElementById("centerDiv")
+        fetch("https://jsonplaceholder.typicode.com/photos?_limit=10")
+            .then((apidata) => apidata.json())
+            .then((jsondata) => {
+                jsondata.map((data, index) => {
+                    let img = document.createElement("img");
+                    img.src = `https://picsum.photos/200/300?random=${data.id}`;
+                    img.alt = "this is random image"
+
+                    center.appendChild(img)
+
+                })
+
+            })
+    </script>
+</body>
+
+</html>
